@@ -1,0 +1,28 @@
+.div-menu{
+    min-width: 20vw;
+    min-height: 100vh;
+}
+.titulonav{
+    text-align: center;
+    font-size: 30px;
+    /* sacamos deoracion de texto */
+    text-decoration: none;
+    /* elimina el subrayado de los links */ 
+    text-decoration: none;
+    /* cambia el color del texto */
+    color: #fff;
+}
+
+
+    .nav-item a{
+        color: #fff;
+    
+    
+    }
+    .nav-item a:hover{
+        color: #fff;
+        background: #000;
+        text-decoration: none;
+    }
+
+    

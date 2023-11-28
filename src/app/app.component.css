@@ -1,0 +1,53 @@
+.main-container {
+    display: flex;
+  }
+  .sidebar {
+    width: 20%; /* Ancho del sidebar */
+    /* Estilos adicionales para el sidebar */
+  }
+  .content {
+    width: 80%; /* Ancho del contenido */
+    margin-left: 20%; /* Ajusta el margen izquierdo para el contenido */
+  }
+  .sidebar {
+    width: 20%; /* Ancho del sidebar */
+    position: fixed; /* Hace que el sidebar sea fijo */
+    top: 0; /* Fija el sidebar en la parte superior */
+    bottom: 0; /* Fija el sidebar en la parte inferior */
+    left: 0; /* Fija el sidebar en el borde izquierdo */
+    /* Agrega estilos adicionales al sidebar */
+  }
+  
+  
+  .welcome {
+      max-height: 100vh;
+      min-height: 100vh;
+      min-width: 80vw;
+      overflow: scroll;
+    }
+    /* imagen de fondo */
+    .welcome {
+      background-image: url("../assets/images/town.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .mainwelcome {
+      background-color: #47474771;
+        
+        margin-top: 10vw;
+    
+      color: #ffffff;
+      text-align: center;
+    }
+    .mainwelcome h2 {
+      font-size: 50px;
+      text-shadow: 2px 2px 4px #000000;
+    }
+    .mainwelcome p {
+      font-size: 20px;
+      text-shadow: 2px 2px 4px #000000;
+    
+    }
+    
