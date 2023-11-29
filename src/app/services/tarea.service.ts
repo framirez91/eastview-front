@@ -36,4 +36,11 @@ export class TareaService {
     const url = `${this.apiUrl}/dia/${dia}`;
     return this.http.get<any>(url);
   }
+  actualizarEstadoTarea(id: number, data: any): Observable<any> {
+    const url = `${this.apiUrl}/estado/${id}`;
+    return this.http.put<any>(url, data);
+  }
+
+
+
 }

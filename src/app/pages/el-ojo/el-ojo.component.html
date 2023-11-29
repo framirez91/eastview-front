@@ -47,7 +47,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-danger btn-sm"
+              class="btn btn-danger btn-sm mx-3"
               (click)="eliminarCiudadano(ciudadano.id_ciudadano)"
             >
               Eliminar
@@ -140,8 +140,8 @@
         <td>{{ tarea.tarea }}</td>
         <td>{{ tarea.estado }}</td>
         <td>
-          <button type="button" class="btn btn-primary" (click)="editarTarea(tarea)">Editar</button>
-          <button type="button" class="btn btn-danger btn-sm" (click)="eliminarTarea(tarea.id_tarea)">Eliminar</button>
+          <button type="button" class="btn btn-primary mx-3" (click)="editarTarea(tarea)">Editar</button>
+          <button type="button" class="btn btn-danger " (click)="eliminarTarea(tarea.id_tarea)">Eliminar</button>
         </td>
       </tr>
     </tbody>

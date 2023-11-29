@@ -1,41 +1,47 @@
-
 <div class="container">
-    <div class="row">
-        <h2 class="subtitulo">Lista de Tareas</h2>
-        <div class="form-group">
-          <label for="selectDiaSemana">Seleccionar Día de la Semana</label>
-          <select class="form-select" id="selectDiaSemana" [(ngModel)]="selectedDia">
-            <option selected>Elige un día de la semana...</option>
-            <option *ngFor="let dia of diasSemana" [value]="dia.id_dia">{{ dia.nombre_dia }}</option>
-          </select>
-        </div>
-      
-      
-        <table class="table mt-3">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Ciudadano</th>
-              <th scope="col">Día de la Semana</th>
-              <th scope="col">Tarea</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let tarea of tareas; let i = index">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>{{ tarea.nombre_ciudadano }}</td>
-              <td>{{ tarea.id_dia_semana }}</td>
-              <td>{{ tarea.tarea }}</td>
-              <td>{{ tarea.estado }}</td>
-              <td>
-        <button type="button" class="btn btn-primary" (click)="ejecutarTareas()">Ejecutar Tareas</button>
-               
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
+  <div class="row">
+    <h2 class="subtitulo">Lista de Tareas a Ejecutar</h2>
+    <div class="m-3">
+      <hr>
+
+      <h3>Selecciona el día</h3>
+   
+      <button class="btn btn-primary mx-2" (click)="aplicarFiltro(1)">Lunes</button>
+      <button class="btn btn-primary mx-2" (click)="aplicarFiltro(2)">Martes</button>
+      <button class="btn btn-primary mx-2" (click)="aplicarFiltro(3)">Miércoles</button>
+      <button class="btn btn-primary mx-2" (click)="aplicarFiltro(4)">Jueves</button>
+      <button class="btn btn-primary mx-2" (click)="aplicarFiltro(5)">Viernes</button>
+      <button class="btn btn-primary mx-2" (click)="aplicarFiltro(6)">Sábado</button>
+      <button class="btn btn-primary mx-2" (click)="aplicarFiltro(7)">Domingo</button>
+ 
+      <button class="btn btn-secondary" (click)="limpiarFiltro()">Limpiar Filtro</button>
+
+      <hr>
+    
+    </div>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Ciudadano</th>
+          <th scope="col">Día de la Semana</th>
+          <th scope="col">Tarea</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarea of tareas; let i = index" [hidden]="filtroDiaSemana !== null && tarea.id_dia_semana !== filtroDiaSemana">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ tarea.nombre_ciudadano }}</td>
+          <td>{{ obtenerNombreDia(tarea.id_dia_semana) }}</td>
+          <td>{{ tarea.tarea }}</td>
+          <td>{{ tarea.estado }}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="ejecutarTarea(tarea)">Ejecutar Tareas</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

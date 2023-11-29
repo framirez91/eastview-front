@@ -10,7 +10,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     // ElojoComponent
     ElOjoComponent,
-    LaBrujaComponent
+    LaBrujaComponent,
+    
   ],
   imports: [
     CommonModule,
