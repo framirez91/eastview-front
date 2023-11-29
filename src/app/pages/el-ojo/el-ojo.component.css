@@ -1,0 +1,66 @@
+.container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* fondo de container */
+.container{
+    background-color: rgba(255, 255, 255, 0.274);
+    border-radius: 5px;
+}
+
+
+.subtitulo{
+  margin-top: 30px;
+  text-align: center;
+  
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgba(4, 0, 255, 0.205);
+  padding: 0;
+  border-radius: 5;
+  text-shadow: 0 0 10px #ffffff;
+    
+}
+/* Estilos para el modal */
+.modal {
+    position: fixed; /* Modal fijo en la ventana */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    display: none; /* Por defecto, oculto */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal.show {
+    display: flex;
+  }
+  
+  /* Estilos para el contenido del modal */
+  .modal-content {
+    background-color: rgba(255, 255, 255, 0.274);
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+  }
+  
+  /* Estilos para el botón de cerrar (x) del modal */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+  }
+  .modal-content h4{
+    text-align: center;
+    color: white;
+  }
+  .form-group label{
+    font-weight: bold;
+    
+  }
+  .tareas label{
+    font-weight: bold;
+  }

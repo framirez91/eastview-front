@@ -1,0 +1,7 @@
+{
+  "/ciudadanos": {
+    "target": "https://east-api-view.onrender.com",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

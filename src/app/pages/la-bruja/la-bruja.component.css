@@ -1,0 +1,23 @@
+.container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* fondo de container */
+.container{
+    background-color: rgba(255, 255, 255, 0.274);
+    border-radius: 5px;
+}
+
+
+.subtitulo{
+  margin-top: 30px;
+  text-align: center;
+  
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: rgba(4, 0, 255, 0.205);
+  padding: 0;
+  border-radius: 5;
+  text-shadow: 0 0 10px #ffffff;
+    
+}

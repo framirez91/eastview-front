@@ -1,1 +1,41 @@
-<p>la-bruja works!</p>
+
+<div class="container">
+    <div class="row">
+        <h2 class="subtitulo">Lista de Tareas</h2>
+        <div class="form-group">
+          <label for="selectDiaSemana">Seleccionar Día de la Semana</label>
+          <select class="form-select" id="selectDiaSemana" [(ngModel)]="selectedDia">
+            <option selected>Elige un día de la semana...</option>
+            <option *ngFor="let dia of diasSemana" [value]="dia.id_dia">{{ dia.nombre_dia }}</option>
+          </select>
+        </div>
+      
+      
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Ciudadano</th>
+              <th scope="col">Día de la Semana</th>
+              <th scope="col">Tarea</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tarea of tareas; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ tarea.nombre_ciudadano }}</td>
+              <td>{{ tarea.id_dia_semana }}</td>
+              <td>{{ tarea.tarea }}</td>
+              <td>{{ tarea.estado }}</td>
+              <td>
+        <button type="button" class="btn btn-primary" (click)="ejecutarTareas()">Ejecutar Tareas</button>
+               
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+</div>

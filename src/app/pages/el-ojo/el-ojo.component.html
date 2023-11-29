@@ -1,1 +1,198 @@
-<p>el-ojo works!</p>
+<div class="container">
+   <!-- agregar ciudadano  -->
+   <div class="row">
+    <div class="container">
+      <h2 class="text-center  subtitulo">Crear Nuevo Ciudadano</h2>
+      <form (ngSubmit)="crearCiudadano()">
+        <div class="form-group">
+          <label for="nombre">Nombre del Ciudadano</label>
+          <input
+            type="text"
+            class="form-control mt-3"
+            id="nombre"
+            [(ngModel)]="nuevoCiudadano.nombre"
+            name="nombre"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Crear Ciudadano</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- fin ciudadano  -->
+  <!-- LISTA DE CIUDADANOS -->
+  <div class="row">
+    <h2 class="subtitulo">Lista de Ciudadanos</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ciudadano of ciudadanos; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ ciudadano.nombre }}</td>
+          <td>
+            <!-- Aquí podrías colocar los botones de acciones -->
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              (click)="editarPopup(ciudadano)"
+            >
+              Editar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="eliminarCiudadano(ciudadano.id_ciudadano)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+ 
+
+  <!-- CREAR TAREAS  -->
+
+
+  <div class="row">
+    <div class="container">
+      <h2 class="subtitulo">Crear Nueva Tarea</h2>
+      <form (ngSubmit)="crearNuevaTarea()">
+        <div class="form-group">
+          <label for="selectCiudadano">Seleccionar Ciudadano</label>
+          <select class="form-select" id="selectCiudadano" [(ngModel)]="nuevaTarea.id_ciudadano" name="id_ciudadano">
+            <option value="" selected disabled>Elige un ciudadano...</option>
+            <option *ngFor="let ciudadano of ciudadanos" [value]="ciudadano.id_ciudadano">{{ ciudadano.nombre }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="selectDiaSemana">Seleccionar Día de la Semana</label>
+          <select class="form-select" id="selectDiaSemana" [(ngModel)]="nuevaTarea.id_dia_semana" name="id_dia_semana">
+            <option value="" selected disabled>Elige un día de la semana...</option>
+            <option *ngFor="let dia of nombre_dia" [value]="dia.id_dia">{{ dia.nombre_dia }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="inputTarea">Tarea a Realizar</label>
+          <input type="text" class="form-control" id="inputTarea" placeholder="Ingrese la tarea a realizar"
+            [(ngModel)]="nuevaTarea.tarea" name="tarea">
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Crear Tarea</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FIN CREAR TAREAS  -->
+
+
+  <!-- EDITAR  TAREAS  -->
+
+<!-- MODAR edita ciudadano -->
+<div class="modal" [ngClass]="{ show: showModal, hidden: !showModal }">
+  <div class="modal-content">
+    <span class="close" (click)="cerrarPopup()">&times;</span>
+    <h4>Editar Ciudadano</h4>
+    <input
+     class="mb-3"
+      type="text"
+      [(ngModel)]="nombreCiudadanoEditado"
+      placeholder="Nuevo nombre"
+    />
+    <button class="btn btn-primary btn-sm" (click)="guardarEdicion()">
+      Guardar
+    </button>
+    <button class="btn btn-secondary btn-sm" (click)="cerrarPopup()">
+      Cancelar
+    </button>
+  </div>
+</div>
+<!-- FIN MODAL edita ciudadano   -->
+
+
+<!-- LISTADO TAREAS  -->
+<div class="row">
+  <h2 class="subtitulo">Lista de Tareas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Ciudadano</th>
+        <th scope="col">Día de la Semana</th>
+        <th scope="col">Tarea</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarea of tareas; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ tarea.nombre_ciudadano }}</td>
+        <td>{{ obtenerNombreDia(tarea.id_dia_semana) }}</td>
+        <td>{{ tarea.tarea }}</td>
+        <td>{{ tarea.estado }}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="editarTarea(tarea)">Editar</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="eliminarTarea(tarea.id_tarea)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- FIN LISTADO TAREAS  -->
+
+
+
+
+</div>
+
+<!-- Modal para editar la tarea -->
+<div class="modal" tabindex="-1" role="dialog" id="editarTareaModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Tarea</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  (click)="cerrarModal()" ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario para editar la tarea -->
+        <form *ngIf="tareaSeleccionada"> <!-- Comprueba si tareaSeleccionada está definida -->
+          <div class="mb-3">
+            <label for="inputCiudadano" class="form-label">Ciudadano</label>
+            <select class="form-select" id="selectCiudadanoEdit" [(ngModel)]="tareaSeleccionada.id_ciudadano" name="id_ciudadano">
+              <option value="" selected disabled>Elige un ciudadano...</option>
+              <option *ngFor="let ciudadano of ciudadanos" [value]="ciudadano.id_ciudadano">{{ ciudadano.nombre }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="inputDiaSemana" class="form-label">Día de la Semana</label>
+            <select class="form-select" id="inputDiaSemana" [(ngModel)]="tareaSeleccionada.id_dia_semana" name="id_dia_semana">
+              <option value="" selected disabled>Elige un día...</option>
+              <option *ngFor="let dia of nombre_dia" [value]="dia.id_dia">{{ dia.nombre_dia }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Descripción de la Tarea</label>
+            <input type="text" class="form-control" id="inputDescripcion" [(ngModel)]="tareaSeleccionada.tarea" name="tarea">
+          </div>
+          <!-- Otros campos para editar la tarea -->
+        </form>
+        <div *ngIf="!tareaSeleccionada">
+          No hay tarea seleccionada para editar.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"(click)="cerrarModal()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="guardarCambios()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
